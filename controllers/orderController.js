@@ -19,6 +19,7 @@ const post_order = async (req, res) => {
             Est_Delv_Date: req.body.Est_Delv_Date
         });
 
+
         await newOrder.save();
         res.status(201).json(newOrder);
     } catch (err) {
@@ -40,4 +41,23 @@ const get_all_orders = async (req, res) => {
     }
 };
 
-module.exports = { post_order, get_all_orders };
+const getOrder = async (req, res) => {
+    try {
+        const { user_id } = req.params;
+
+        const orders = await Order.find({ user_id });
+
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({ msg: 'Orders not found' });
+        }
+
+        res.status(200).json(orders);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
+
+module.exports = { post_order, get_all_orders, getOrder };

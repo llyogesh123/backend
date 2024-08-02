@@ -17,9 +17,14 @@ const orderSchema = new mongoose.Schema({
     Est_Delv_Date:{
         type: 'Date',
     },
-    products :{
-        type: 'string',
-    },
+    products :[{
+        'title':'string',
+        'description':'string',
+        'img':'string',
+        'price':'number',
+        'quantity':'number',
+    }],
+    
     total_amount :{
         type:'number',
     },
