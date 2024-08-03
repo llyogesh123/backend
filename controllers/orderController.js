@@ -58,6 +58,4 @@ const getOrder = async (req, res) => {
     }
 };
 
-
-
 module.exports = { post_order, get_all_orders, getOrder };
